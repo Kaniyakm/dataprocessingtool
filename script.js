@@ -1,53 +1,57 @@
+// Task 1: Format Full Name
 function formatFullName(firstName, lastName) {
   if (!firstName || !lastName) {
     return "Invalid name input.";
   }
-
-  const formattedFirst = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
-  const formattedLast = lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase();
-
-  return `${formattedLast}, ${formattedFirst}`;
+  const formattedFirstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+  const formattedLastName = lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase();
+  return `${formattedLastName}, ${formattedFirstName}`;
 }
 
-console.log(formatFullName("Kaniya", "Martin"));
+console.log(formatFullName("kaniya", "martin"));
 
-
-function calculateTotalCost(price, quantity, taxRate) {
-  if (
-    typeof price !== "number" ||
-    typeof quantity !== "number" ||
-    typeof taxRate !== "number" ||
-    isNaN(price) ||
-    isNaN(quantity) ||
-    isNaN(taxRate)
-  ) {
-    return "Invalid input.";
-  }
-
-  const totalCost = (price * quantity) * (1 + taxRate);
-  return `The total cost is $${totalCost.toFixed(2)}`;
+// Task 2: Calculate Total Cost
+function calculateTotalCost(price, quantity) {
+  const taxRate = 0.07;
+  const subtotal = price * quantity;
+  const total = subtotal + subtotal * taxRate;
+  return total.toFixed(2);
 }
 
-console.log(calculateTotalCost(20, 3, 0.07));
+console.log("The total cost is $" + calculateTotalCost(30, 2));
 
-
-function checkEligibility(age, isEmployed) {
-  if (typeof age !== "number" || age < 0 || isNaN(age)) {
+// Task 3: Check Eligibility
+function checkEligibility(age, hasPermission) {
+  if (typeof age !== "number" || age < 0) {
     return "Invalid age input.";
   }
 
-  if (age <= 18) {
-    return "Not eligible.";
-  } else if (age > 18 && isEmployed === true) {
+  if (age >= 18 && hasPermission) {
     return "Eligible.";
-  } else if (age > 18 && isEmployed === false) {
+  } else if (age >= 16 && !hasPermission) {
     return "Conditionally eligible.";
+  } else {
+    return "Not eligible.";
   }
-
-  return "Eligibility cannot be determined.";
 }
 
-console.log(checkEligibility(25, true));
-console.log(checkEligibility(25, false));
-console.log(checkEligibility(17, true));
-console.log(checkEligibility("twenty", true));
+console.log(checkEligibility(18, true));
+console.log(checkEligibility(16, false));
+console.log(checkEligibility(12, true));
+console.log(checkEligibility(-1, false));
+
+// Task 4: Refactoring for Reusability
+function calculateTotalCostWithDiscount(price, quantity, discount = 0) {
+  const taxRate = 0.07;
+  let subtotal = price * quantity;
+
+  if (discount > 0) {
+    subtotal -= discount;
+  }
+
+  const total = subtotal + subtotal * taxRate;
+  return total.toFixed(2);
+}
+
+console.log("Total with discount: $" + calculateTotalCostWithDiscount(50, 3, 10));
+console.log("Total without discount: $" + calculateTotalCostWithDiscount(50, 3));
