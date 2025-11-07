@@ -1,3 +1,4 @@
+console.log(formatFullName("kaniya", "martin"));
 function formatFullName(firstName, lastName) {
   if (!firstName || !lastName) {
     return "Invalid name input.";
@@ -9,4 +10,22 @@ function formatFullName(firstName, lastName) {
   return `${formattedLast}, ${formattedFirst}`;
 }
 
-console.log(formatFullName("kaniya", "martin"));
+console.log(formatFullName("Kaniya", "Martin"));
+
+function calculateTotalCost(price, quantity, taxRate) {
+  if (
+    typeof price !== "number" ||
+    typeof quantity !== "number" ||
+    typeof taxRate !== "number" ||
+    isNaN(price) ||
+    isNaN(quantity) ||
+    isNaN(taxRate)
+  ) {
+    return "Invalid input.";
+  }
+
+  const totalCost = (price * quantity) * (1 + taxRate);
+  return `The total cost is $${totalCost.toFixed(2)}`;
+}
+
+console.log(calculateTotalCost(20, 3, 0.07));
