@@ -1,4 +1,3 @@
-console.log(formatFullName("kaniya", "martin"));
 function formatFullName(firstName, lastName) {
   if (!firstName || !lastName) {
     return "Invalid name input.";
@@ -11,6 +10,7 @@ function formatFullName(firstName, lastName) {
 }
 
 console.log(formatFullName("Kaniya", "Martin"));
+
 
 function calculateTotalCost(price, quantity, taxRate) {
   if (
@@ -29,3 +29,25 @@ function calculateTotalCost(price, quantity, taxRate) {
 }
 
 console.log(calculateTotalCost(20, 3, 0.07));
+
+
+function checkEligibility(age, isEmployed) {
+  if (typeof age !== "number" || age < 0 || isNaN(age)) {
+    return "Invalid age input.";
+  }
+
+  if (age <= 18) {
+    return "Not eligible.";
+  } else if (age > 18 && isEmployed === true) {
+    return "Eligible.";
+  } else if (age > 18 && isEmployed === false) {
+    return "Conditionally eligible.";
+  }
+
+  return "Eligibility cannot be determined.";
+}
+
+console.log(checkEligibility(25, true));
+console.log(checkEligibility(25, false));
+console.log(checkEligibility(17, true));
+console.log(checkEligibility("twenty", true));
